@@ -41,8 +41,14 @@
      <h2>Full Stack Developer</h2>
      <p>Hello There! I am Xavier</p> <br>
      <main>
-    <div class="about-content">
+
      <section id="about">
+    <div class="about-content">
+        <figure>
+            <img src="images/profile.jpg" alt="Profile Picture" width="400" height="400">
+            <figcaption>Xavier Ruiz - My Profile Picture</figcaption>
+        </figure>
+    </div>
     <h2>About Me</h2>
     <!-- Add paragraphs here -->
      <p> My name is <strong>Xavier Ruiz</strong>, and I like coding and problem solving.</p>
@@ -59,15 +65,112 @@
             <li>Linkin Park</li>
         </ul>
     </aside>
-</div>
+
 </section>
     </main>
     <main>
     <section id="skills">
     <h2>Skills</h2>
+    <h3>Technical Skills</h3>
+    <ul>
+        <li>HTML/CSS
+            <ul>
+                <li>Responsive Design</li>
+                <li>Flexbox</li>
+                <li>Grid</li>
+            </ul>
+        </li>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>React</li>
+        <li>Node.js</li>
+        <li>Git</li>
+    </ul>
+    <h3>Career Timeline</h3>
+    <ol>
+        <li><em>2024 - Present:</em> <strong>Completing High School</strong></li>
+        <li><em>2024 - 2026:</em> <strong>Attending Computer Science classes in High School</strong></li>
+        <li><em>2026 - 2028:</em> <strong>Attending Vocational School</strong></li>
+        <li><em>Future:</em> <strong>Get a job as a web developer</strong></li>
+    </ol>
+    </section>
+    <section id="media">
+        <h2>Media</h2>
+        <video controls width="320" poster="images/video-poster.jpg">
+            <source src=" " type="video/mp4">
+            Your browser does not support the video element.
+        </video>
+        <audio controls>
+            <source src=" " type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     </section>
     <section id="projects">
     <!-- existing content -->
+     <div class="projects-grid">
+        <article class="project-card">
+            <figure>
+                <img class="project-thumbnail" src="images/portfolio-thumbnail.jpg" alt="Portfolio website thumbnail">
+                <figcaption>Personal Portfolio</figcaption>
+            </figure>
+            <h3>Personal Portfolio</h3>
+            <p>A website showcasing my projects and skills.</p>
+            <p>HTML, CSS, JavaScript</p>
+        </article>
+        <article class="project-card">
+            <figure>
+                <img class="project-thumbnail" src="images/weather-app-thumbnail.jpg" alt="Weather app thumbnail">
+                <figcaption>Weather App</figcaption>
+            </figure>
+            <h3>Weather App</h3>
+            <p>A web application that displays weather information based on user location.</p>
+            <p>React, OpenWeatherMap API</p>
+        </article>
+        <article class="project-card">
+            <figure>
+                <img class="project-thumbnail" src="images/task-manager-thumbnail.jpg" alt="Task manager thumbnail">
+                <figcaption>Task Manager</figcaption>
+            </figure>
+            <h3>Task Manager</h3>
+            <p>A simple task management application for keeping track of daily tasks.</p>
+            <p>Node.js, Express, MongoDB</p>
+        </article>
+</div>
+<table>
+. . .
+</table>
+     <h2>Projects</h2>
+     <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Technologies</th>
+                <th>Year</th>
+                <th>Status</th>
+            </tr>
+        <tbody>
+        <tr>
+            <th>Project Name</th>
+            <th>Description</th>
+            <th>Technologies Used</th>
+        </tr>
+        <tr>
+            <td>Technologies</td>
+            <td>A personal portfolio website to showcase my projects and skills.</td>
+            <td>HTML, CSS, JavaScript</td>
+        </tr>
+        <tr>
+            <td>Year</td>
+            <td>A web application that displays weather information based on user location.</td>
+            <td>React, OpenWeatherMap API</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>A simple task management application to keep track of daily tasks.</td>
+            <td>Node.js, Express, MongoDB</td>
+        </tr>
+    </tbody>
+     </table>
      <p>My Philosophy</p>
      <blockquote cite="https://www.brainyquote.com/quotes/steve_jobs_416859">
         "The only way to do great work is to love what you do." - Steve Jobs
@@ -75,6 +178,34 @@
     </main>
     <main>
     <section id="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <!-- Form fields here -->
+             <form action = "#" method = "POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows = "5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message 🚀</button>
+                <button type="button">Clear Form</button>
+                <button type="button" onclick="window.print()">Print</button>
+             </form>
+             <form id = "contactForm">
+                <!-- existing name, email, and message fields -->
+                 <select name="projectType" required>
+                    <option value="">Select a subject</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="project">Project Collaboration</option>
+                    <option value="feedback">Feedback</option>
+                 </select>
+                 <fieldset>
+                    <legend>Project budget and updates</legend>
+                    <label><input type="radio" name="budget" value="$1k-$5k"> $1k-$5k</label>
+                    <label><input type="radio" name="budget" value="$5k-$15k"> $5k-$15k</label>
+                    <label><input type="radio" name="budget" value="$15k+"> $15k+</label>
+                    <label><input type="checkbox" name="newsletter"> Subscribe to updates</label>
+                 </fieldset>
+             </form>
+        </form>
         <!-- Contact info here -->
          <a href="mailto:42602@ocvts.org">Email Me</a>
          <a href="tel:+1234567890">Call Me</a>

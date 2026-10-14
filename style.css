@@ -1,13 +1,62 @@
-body{
+body {
     font-family: Arial, sans-serif;
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-h1, h1, h3{
+h1, h2, h3 {
     color: navy;
 }
 
-p{
+p {
     line-height: 1.6;
     font-size: 16px;
+}
+
+#contact {
+    padding: 40px 24px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 600px;
+}
+
+#contact label,
+#contact fieldset,
+#contact .form-actions,
+#contact .contact-links {
+    margin-top: 10px;
+}
+
+#contact input,
+#contact select,
+#contact textarea,
+#contact button {
+    margin-top: 6px;
+}
+
+#contact fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.contact-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }

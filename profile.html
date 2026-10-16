@@ -41,6 +41,41 @@
       h2 {
         color: #1e40af;
         margin-bottom: 20px;
+        margin-top: 0;
+      }
+
+      section {
+        padding: 60px 0;
+        margin-bottom: 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      nav {
+        padding: 15px 0;
+      }
+
+      aside {
+        border-left: 4px solid #f59e0b;
+        padding-left: 20px;
+      }
+
+      .project-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+      }
+
+      table {
+        border: 1px solid #cbd5e1;
+      }
+
+      img {
+        border-radius: 6px;
       }
 
       h3 {
@@ -78,212 +113,224 @@
 
     <main>
       <section class="hero" aria-labelledby="hero-title">
-        <h1 id="hero-title">Hello World</h1>
-        <h2>Full Stack Developer</h2>
-        <p>Hello there! I am Xavier.</p>
+        <div class="container">
+          <h1 id="hero-title">Hello World</h1>
+          <h2>Full Stack Developer</h2>
+          <p>Hello there! I am Xavier.</p>
+        </div>
       </section>
 
       <section id="about" aria-labelledby="about-title">
-        <div class="about-content">
-          <figure>
-            <img src="images/profile.jpg" alt="Profile Picture of Xavier Ruiz" width="400" height="400" />
-            <figcaption>Xavier Ruiz - My Profile Picture</figcaption>
-          </figure>
-        </div>
+        <div class="container">
+          <div class="about-content">
+            <figure>
+              <img src="images/profile.jpg" alt="Profile Picture of Xavier Ruiz" width="400" height="400" />
+              <figcaption>Xavier Ruiz - My Profile Picture</figcaption>
+            </figure>
+          </div>
 
-        <div class="about-text">
-          <h2 id="about-title">About Me</h2>
-          <p>
-            My name is <strong>Xavier Ruiz</strong>, and I like coding and problem solving.
-          </p>
-          <p>
-            <em>
-             I enjoy all things pop culture related.
-            </em>
-          </p>
-          <p>
-            I do well in school and maintain A's.
-          </p>
-        </div>
+          <div class="about-text">
+            <h2 id="about-title">About Me</h2>
+            <p>
+              My name is <strong>Xavier Ruiz</strong>, and I like coding and problem solving.
+            </p>
+            <p>
+              <em>
+               I enjoy all things pop culture related.
+              </em>
+            </p>
+            <p>
+              I do well in school and maintain A's.
+            </p>
+          </div>
 
-        <aside>
-          <h3>Quick Facts</h3>
-          <p>Barnegat, NJ</p>
-          <p>Not available often</p>
-          <p>VS Code</p>
-          <ul>
-            <li>MARVEL Comics</li>
-            <li>Bleach</li>
-            <li>Linkin Park</li>
-          </ul>
-        </aside>
+          <aside>
+            <h3>Quick Facts</h3>
+            <p>Barnegat, NJ</p>
+            <p>Not available often</p>
+            <p>VS Code</p>
+            <ul>
+              <li>MARVEL Comics</li>
+              <li>Bleach</li>
+              <li>Linkin Park</li>
+            </ul>
+          </aside>
+        </div>
       </section>
 
       <section id="skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">Skills</h2>
+        <div class="container">
+          <h2 id="skills-title">Skills</h2>
 
-        <h3>Technical Skills</h3>
-        <ul>
-          <li>
-            HTML/CSS
-            <ul>
-              <li>Responsive Design</li>
-              <li>Flexbox</li>
-              <li>Grid</li>
-            </ul>
-          </li>
-          <li>JavaScript</li>
-          <li>Python</li>
-          <li>React</li>
-          <li>Node.js</li>
-          <li>Git</li>
-        </ul>
+          <h3>Technical Skills</h3>
+          <ul>
+            <li>
+              HTML/CSS
+              <ul>
+                <li>Responsive Design</li>
+                <li>Flexbox</li>
+                <li>Grid</li>
+              </ul>
+            </li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>React</li>
+            <li>Node.js</li>
+            <li>Git</li>
+          </ul>
 
-        <h3>Career Timeline</h3>
-        <ol>
-          <li><em>2024 - Present:</em> <strong>Completing High School</strong></li>
-          <li><em>2024 - 2026:</em> <strong>Attending Computer Science classes in High School</strong></li>
-          <li><em>2026 - 2028:</em> <strong>Attending Vocational School</strong></li>
-          <li><em>Future:</em> <strong>Get a job as a web developer</strong></li>
-        </ol>
+          <h3>Career Timeline</h3>
+          <ol>
+            <li><em>2024 - Present:</em> <strong>Completing High School</strong></li>
+            <li><em>2024 - 2026:</em> <strong>Attending Computer Science classes in High School</strong></li>
+            <li><em>2026 - 2028:</em> <strong>Attending Vocational School</strong></li>
+            <li><em>Future:</em> <strong>Get a job as a web developer</strong></li>
+          </ol>
+        </div>
       </section>
 
       <section id="media" aria-labelledby="media-title">
-        <h2 id="media-title">Media</h2>
-        <video controls width="320" poster="images/video-poster.jpg">
-          <source src="" type="video/mp4" />
-          Your browser does not support the video element.
-        </video>
-        <audio controls>
-          <source src="" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
+        <div class="container">
+          <h2 id="media-title">Media</h2>
+          <video controls width="320" poster="images/video-poster.jpg">
+            <source src="" type="video/mp4" />
+            Your browser does not support the video element.
+          </video>
+          <audio controls>
+            <source src="" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
       </section>
 
       <section id="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title">Projects</h2>
+        <div class="container">
+          <h2 id="projects-title">Projects</h2>
 
-        <div class="projects-grid">
-          <article class="project-card">
-            <figure>
-              <img class="project-thumbnail" src="images/portfolio-thumbnail.jpg" alt="Portfolio website thumbnail" />
-              <figcaption>Personal Portfolio</figcaption>
-            </figure>
-            <h3>Personal Portfolio</h3>
-            <p>A website showcasing my projects and skills.</p>
-            <p>HTML, CSS, JavaScript</p>
-          </article>
+          <div class="projects-grid">
+            <article class="project-card">
+              <figure>
+                <img class="project-thumbnail" src="images/portfolio-thumbnail.jpg" alt="Portfolio website thumbnail" />
+                <figcaption>Personal Portfolio</figcaption>
+              </figure>
+              <h3>Personal Portfolio</h3>
+              <p>A website showcasing my projects and skills.</p>
+              <p>HTML, CSS, JavaScript</p>
+            </article>
 
-          <article class="project-card">
-            <figure>
-              <img class="project-thumbnail" src="images/weather-app-thumbnail.jpg" alt="Weather app thumbnail" />
-              <figcaption>Weather App</figcaption>
-            </figure>
-            <h3>Weather App</h3>
-            <p>A web application that displays weather information based on user location.</p>
-            <p>React, OpenWeatherMap API</p>
-          </article>
+            <article class="project-card">
+              <figure>
+                <img class="project-thumbnail" src="images/weather-app-thumbnail.jpg" alt="Weather app thumbnail" />
+                <figcaption>Weather App</figcaption>
+              </figure>
+              <h3>Weather App</h3>
+              <p>A web application that displays weather information based on user location.</p>
+              <p>React, OpenWeatherMap API</p>
+            </article>
 
-          <article class="project-card">
-            <figure>
-              <img class="project-thumbnail" src="images/task-manager-thumbnail.jpg" alt="Task manager thumbnail" />
-              <figcaption>Task Manager</figcaption>
-            </figure>
-            <h3>Task Manager</h3>
-            <p>A simple task management application for keeping track of daily tasks.</p>
-            <p>Node.js, Express, MongoDB</p>
-          </article>
+            <article class="project-card">
+              <figure>
+                <img class="project-thumbnail" src="images/task-manager-thumbnail.jpg" alt="Task manager thumbnail" />
+                <figcaption>Task Manager</figcaption>
+              </figure>
+              <h3>Task Manager</h3>
+              <p>A simple task management application for keeping track of daily tasks.</p>
+              <p>Node.js, Express, MongoDB</p>
+            </article>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Technologies</th>
+                <th>Year</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Personal Portfolio</td>
+                <td>A website showcasing my projects and skills.</td>
+                <td>HTML, CSS, JavaScript</td>
+                <td>2026</td>
+                <td>In Progress</td>
+              </tr>
+              <tr>
+                <td>Weather App</td>
+                <td>A web application that displays weather information based on user location.</td>
+                <td>React, OpenWeatherMap API</td>
+                <td>2025</td>
+                <td>Complete</td>
+              </tr>
+              <tr>
+                <td>Task Manager</td>
+                <td>A simple task management application to keep track of daily tasks.</td>
+                <td>Node.js, Express, MongoDB</td>
+                <td>2025</td>
+                <td>Complete</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>My Philosophy</p>
+          <blockquote cite="https://www.brainyquote.com/quotes/steve_jobs_416859">
+            "The only way to do great work is to love what you do." - Steve Jobs
+          </blockquote>
         </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Technologies</th>
-              <th>Year</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Personal Portfolio</td>
-              <td>A website showcasing my projects and skills.</td>
-              <td>HTML, CSS, JavaScript</td>
-              <td>2026</td>
-              <td>In Progress</td>
-            </tr>
-            <tr>
-              <td>Weather App</td>
-              <td>A web application that displays weather information based on user location.</td>
-              <td>React, OpenWeatherMap API</td>
-              <td>2025</td>
-              <td>Complete</td>
-            </tr>
-            <tr>
-              <td>Task Manager</td>
-              <td>A simple task management application to keep track of daily tasks.</td>
-              <td>Node.js, Express, MongoDB</td>
-              <td>2025</td>
-              <td>Complete</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p>My Philosophy</p>
-        <blockquote cite="https://www.brainyquote.com/quotes/steve_jobs_416859">
-          "The only way to do great work is to love what you do." - Steve Jobs
-        </blockquote>
       </section>
 
       <section id="contact" aria-labelledby="contact-title">
-        <h2 id="contact-title">Contact Me</h2>
+        <div class="container">
+          <h2 id="contact-title">Contact Me</h2>
 
-        <form action="#" method="post">
-          <label>
-            <span>Your Name</span>
-            <input type="text" name="name" placeholder="Your Name" required />
-          </label>
+          <form action="#" method="post">
+            <label>
+              <span>Your Name</span>
+              <input type="text" name="name" placeholder="Your Name" required />
+            </label>
 
-          <label>
-            <span>Your Email</span>
-            <input type="email" name="email" placeholder="Your Email" required />
-          </label>
+            <label>
+              <span>Your Email</span>
+              <input type="email" name="email" placeholder="Your Email" required />
+            </label>
 
-          <label>
-            <span>Subject</span>
-            <select name="projectType" required>
-              <option value="">Select a subject</option>
-              <option value="general">General Inquiry</option>
-              <option value="project">Project Collaboration</option>
-              <option value="feedback">Feedback</option>
-            </select>
-          </label>
+            <label>
+              <span>Subject</span>
+              <select name="projectType" required>
+                <option value="">Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="project">Project Collaboration</option>
+                <option value="feedback">Feedback</option>
+              </select>
+            </label>
 
-          <label>
-            <span>Your Message</span>
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          </label>
+            <label>
+              <span>Your Message</span>
+              <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            </label>
 
-          <fieldset>
-            <legend>Project budget and updates</legend>
-            <label><input type="radio" name="budget" value="$1k-$5k" /> $1k-$5k</label>
-            <label><input type="radio" name="budget" value="$5k-$15k" /> $5k-$15k</label>
-            <label><input type="radio" name="budget" value="$15k+" /> $15k+</label>
-            <label><input type="checkbox" name="newsletter" /> Subscribe to updates</label>
-          </fieldset>
+            <fieldset>
+              <legend>Project budget and updates</legend>
+              <label><input type="radio" name="budget" value="$1k-$5k" /> $1k-$5k</label>
+              <label><input type="radio" name="budget" value="$5k-$15k" /> $5k-$15k</label>
+              <label><input type="radio" name="budget" value="$15k+" /> $15k+</label>
+              <label><input type="checkbox" name="newsletter" /> Subscribe to updates</label>
+            </fieldset>
 
-          <div class="form-actions">
-            <button type="submit">Send Message 🚀</button>
-            <button type="reset">Clear Form</button>
-            <button type="button" onclick="window.print()">Print</button>
+            <div class="form-actions">
+              <button type="submit">Send Message 🚀</button>
+              <button type="reset">Clear Form</button>
+              <button type="button" onclick="window.print()">Print</button>
+            </div>
+          </form>
+
+          <div class="contact-links">
+            <a href="mailto:42602@ocvts.org">Email Me</a>
+            <a href="tel:+1234567890">Call Me</a>
+            <a href="#" onclick="window.print(); return false;">Print Page</a>
           </div>
-        </form>
-
-        <div class="contact-links">
-          <a href="mailto:42602@ocvts.org">Email Me</a>
-          <a href="tel:+1234567890">Call Me</a>
-          <a href="#" onclick="window.print(); return false;">Print Page</a>
         </div>
       </section>
     </main>

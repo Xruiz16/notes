@@ -1,8 +1,24 @@
+html {
+    font-size: 16px;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     margin: 0;
     padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+code, kbd, pre, samp {
+    font-family: 'Courier New', monospace;
+}
+
+input, select, textarea, button {
+    font-family: inherit;
 }
 
 h1, h2, h3 {
@@ -11,7 +27,7 @@ h1, h2, h3 {
 
 p {
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 #contact {

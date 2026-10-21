@@ -86,7 +86,81 @@
       }
 
       table {
+        width: 100%;
+        border-collapse: collapse;
         border: 1px solid #cbd5e1;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+      }
+
+      th,
+      td {
+        padding: 14px 18px;
+        text-align: left;
+      }
+
+      th {
+        background: var(--primary);
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background: #f1f5f9;
+      }
+
+      tr:hover {
+        background: #e0f2fe;
+      }
+
+      .timeline {
+        list-style: none;
+        counter-reset: year;
+        padding-left: 0;
+        position: relative;
+        display: flow-root;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: -2px;
+        top: 14px;
+        bottom: 14px;
+        width: 3px;
+        background: var(--primary);
+      }
+
+      .timeline li {
+        position: relative;
+        padding: 8px 12px 8px 40px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+      }
+
+      .timeline li:nth-child(odd) {
+        background: #f1f5f9;
+      }
+
+      .timeline li:nth-child(even) {
+        background: #e0f2fe;
+      }
+
+      .timeline li:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline li::before {
+        content: counter(year);
+        counter-increment: year;
+        position: absolute;
+        left: -16px;
+        top: 0;
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
       }
 
       img {
@@ -178,7 +252,7 @@
           <h2 id="skills-title">Skills</h2>
 
           <h3>Technical Skills</h3>
-          <ul>
+          <ul class="skills-list">
             <li>
               HTML/CSS
               <ul>
@@ -195,7 +269,7 @@
           </ul>
 
           <h3>Career Timeline</h3>
-          <ol>
+          <ol class="timeline">
             <li><em>2024 - Present:</em> <strong>Completing High School</strong></li>
             <li><em>2024 - 2026:</em> <strong>Attending Computer Science classes in High School</strong></li>
             <li><em>2026 - 2028:</em> <strong>Attending Vocational School</strong></li>

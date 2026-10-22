@@ -41,6 +41,7 @@ p {
     flex-direction: column;
     gap: 18px;
     max-width: 600px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 #contact label,
@@ -98,6 +99,55 @@ p {
     content: "✓";
     margin-right: 8px;
 }
+
+.skills-chart-layout {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.skills-chart {
+    width: 180px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(
+        #2563eb 0deg 60deg,
+        #7c3aed 60deg 120deg,
+        #db2777 120deg 180deg,
+        #ea580c 180deg 240deg,
+        #16a34a 240deg 300deg,
+        #0891b2 300deg 360deg
+    );
+}
+
+.skills-chart-legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.skills-chart-legend li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skills-chart-legend li::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background: var(--skill-color);
+}
+
+.skills-chart-legend li:nth-child(1) { --skill-color: #2563eb; }
+.skills-chart-legend li:nth-child(2) { --skill-color: #7c3aed; }
+.skills-chart-legend li:nth-child(3) { --skill-color: #db2777; }
+.skills-chart-legend li:nth-child(4) { --skill-color: #ea580c; }
+.skills-chart-legend li:nth-child(5) { --skill-color: #16a34a; }
+.skills-chart-legend li:nth-child(6) { --skill-color: #0891b2; }
 
 @media (max-width: 600px) {
     .skills-list {

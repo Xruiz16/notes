@@ -17,7 +17,7 @@
       }
 
       body {
-        background-color: #f8fafc;
+        background: linear-gradient(to right, #f8fafc, #e2e8f0);
         color: #1e293b;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
@@ -35,6 +35,15 @@
       h1 {
         color: #2563eb;
         font-size: 2.5rem;
+        background-image: linear-gradient(135deg, #2563eb, #7c3aed);
+      }
+
+      @supports (background-clip: text) {
+        h1 {
+          color: transparent;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
       }
 
       h2 {
@@ -75,6 +84,30 @@
         padding: 15px 0;
       }
 
+      .site-header {
+        background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .site-header nav a,
+      .site-header nav a:visited {
+        color: #ffffff;
+      }
+
+      .site-header nav a:hover {
+        color: #fef3c7;
+      }
+
+      footer {
+        background: linear-gradient(to right, #f1f5f9, #cbd5e1);
+        color: #1e293b;
+      }
+
+      footer a,
+      footer a:visited {
+        color: #1e40af;
+      }
+
       aside {
         border-left: 4px solid #f59e0b;
         padding-left: 20px;
@@ -83,13 +116,42 @@
       .project-card {
         border: 1px solid #e2e8f0;
         border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      .profile-img {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 0.2s ease;
+      }
+
+      .profile-img:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       }
 
       table {
         width: 100%;
         border-collapse: collapse;
         border: 1px solid #cbd5e1;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        transition: box-shadow 0.2s ease;
+      }
+
+      table:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      #contact form {
+        transition: box-shadow 0.2s ease;
+      }
+
+      #contact form:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
       }
 
       th,
@@ -178,13 +240,24 @@
         transition: color 0.3s ease;
       }
 
+      a:visited {
+        color: #1d4ed8;
+      }
+
       a:hover {
         color: #f59e0b;
         text-decoration: underline;
       }
 
-      a:visited {
-        color: #1d4ed8;
+      button {
+        background: #2563eb;
+        color: #ffffff;
+        transition: background 0.3s, transform 0.2s;
+      }
+
+      button:hover {
+        background: #1e40af;
+        transform: translateY(-2px);
       }
     </style>
   </head>
@@ -213,7 +286,7 @@
         <div class="container">
           <div class="about-content">
             <figure>
-              <img src="images/profile.jpg" alt="Profile Picture of Xavier Ruiz" width="400" height="400" />
+              <img class="profile-img" src="images/profile.jpg" alt="Profile Picture of Xavier Ruiz" width="400" height="400" />
               <figcaption>Xavier Ruiz - My Profile Picture</figcaption>
             </figure>
           </div>
@@ -252,6 +325,22 @@
           <h2 id="skills-title">Skills</h2>
 
           <h3>Technical Skills</h3>
+          <div class="skills-chart-layout">
+            <div
+              class="skills-chart"
+              role="img"
+              aria-label="Pie chart showing six equally sized skill categories: HTML/CSS, JavaScript, Python, React, Node.js, and Git."
+            ></div>
+            <ul class="skills-chart-legend" aria-label="Skill chart legend">
+              <li>HTML/CSS</li>
+              <li>JavaScript</li>
+              <li>Python</li>
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Git</li>
+            </ul>
+          </div>
+
           <ul class="skills-list">
             <li>
               HTML/CSS

@@ -16,11 +16,20 @@
         --primary: #2563eb;
         --dark: #1e293b;
         --accent: #f59e0b;
+        --page-start: #f8fafc;
+        --page-end: #e2e8f0;
+        --surface: #ffffff;
+        --surface-alt: #f1f5f9;
+        --surface-highlight: #e0f2fe;
+        --text: #1e293b;
+        --muted: #475569;
+        --border: #cbd5e1;
+        --link: #1e40af;
       }
 
       body {
-        background: linear-gradient(to right, #f8fafc, #e2e8f0);
-        color: #1e293b;
+        background: linear-gradient(to right, var(--page-start), var(--page-end));
+        color: var(--text);
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
         padding-top: 56px;
@@ -50,7 +59,7 @@
       }
 
       h2 {
-        color: #1e40af;
+        color: var(--link);
         font-size: 2rem;
         margin-bottom: 20px;
         margin-top: 0;
@@ -74,10 +83,11 @@
       section {
         padding: 60px 0;
         margin-bottom: 0;
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid var(--page-end);
       }
 
       .container {
+        container-type: inline-size;
         max-width: 1100px;
         margin: 0 auto;
         padding: 0 20px;
@@ -96,7 +106,24 @@
       }
 
       nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
         margin: 0;
+        padding: 0;
+      }
+
+      .nav-social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-left: auto;
+      }
+
+      nav li {
+        list-style: none;
       }
 
       nav.nav-scrolled {
@@ -118,13 +145,13 @@
       }
 
       footer {
-        background: linear-gradient(to right, #f1f5f9, #cbd5e1);
-        color: #1e293b;
+        background: linear-gradient(to right, var(--surface-alt), var(--border));
+        color: var(--text);
       }
 
       footer a,
       footer a:visited {
-        color: #1e40af;
+        color: var(--link);
       }
 
       aside {
@@ -133,15 +160,46 @@
       }
 
       .project-card {
+        box-sizing: border-box;
+        width: 100%;
         position: relative;
-        border: 1px solid #e2e8f0;
+        background-color: var(--surface);
+        border: 1px solid var(--page-end);
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
         transition: transform 0.3s, box-shadow 0.3s;
       }
 
+      .projects-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        grid-template-areas:
+          "featured weather"
+          "featured task-manager";
+        gap: 30px;
+      }
+
       .project-card--featured {
+        grid-area: featured;
         padding-top: 48px;
+      }
+
+      .project-card--weather {
+        grid-area: weather;
+      }
+
+      .project-card--task-manager {
+        grid-area: task-manager;
+      }
+
+      @container (max-width: 640px) {
+        .projects-grid {
+          grid-template-columns: minmax(0, 1fr);
+          grid-template-areas:
+            "featured"
+            "weather"
+            "task-manager";
+        }
       }
 
       .badge {
@@ -177,7 +235,7 @@
       table {
         width: 100%;
         border-collapse: collapse;
-        border: 1px solid #cbd5e1;
+        border: 1px solid var(--border);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         transition: box-shadow 0.2s ease;
       }
@@ -206,11 +264,24 @@
       }
 
       tr:nth-child(even) {
-        background: #f1f5f9;
+        background: var(--surface-alt);
       }
 
       tr:hover {
-        background: #e0f2fe;
+        background: var(--surface-highlight);
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .skills-list > li {
+        list-style: none;
+        padding: 8px 12px;
       }
 
       .timeline {
@@ -239,11 +310,11 @@
       }
 
       .timeline li:nth-child(odd) {
-        background: #f1f5f9;
+        background: var(--surface-alt);
       }
 
       .timeline li:nth-child(even) {
-        background: #e0f2fe;
+        background: var(--surface-highlight);
       }
 
       .timeline li:last-child {
@@ -265,23 +336,37 @@
         color: white;
       }
 
+      @container (max-width: 600px) {
+        .skills-list {
+          gap: 8px;
+        }
+
+        .skills-list > li {
+          padding: 6px 8px;
+        }
+
+        .timeline li {
+          padding-left: 30px;
+        }
+      }
+
       img {
         border-radius: 6px;
       }
 
       h3 {
-        color: #475569;
+        color: var(--muted);
         font-weight: 600;
       }
 
       a {
-        color: var(--primary);
+        color: var(--link);
         text-decoration: none;
         transition: color 0.3s ease;
       }
 
       a:visited {
-        color: #1d4ed8;
+        color: var(--link);
       }
 
       a:hover {
@@ -333,6 +418,32 @@
       #backToTop span {
         position: relative;
       }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: dark;
+          --primary: #1d4ed8;
+          --dark: #0f172a;
+          --accent: #fbbf24;
+          --page-start: #0f172a;
+          --page-end: #1e293b;
+          --surface: #1e293b;
+          --surface-alt: #334155;
+          --surface-highlight: #1e3a5f;
+          --text: #e2e8f0;
+          --muted: #cbd5e1;
+          --border: #475569;
+          --link: #bfdbfe;
+        }
+
+        h2 {
+          color: var(--link);
+        }
+
+        .site-header {
+          background: linear-gradient(135deg, #1d4ed8 0%, #172554 100%);
+        }
+      }
     </style>
   </head>
 
@@ -343,6 +454,10 @@
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li class="nav-social-links">
+            <a href="https://github.com/Xruiz16" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/username/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -472,7 +587,7 @@
               <p>HTML, CSS, JavaScript</p>
             </article>
 
-            <article class="project-card">
+            <article class="project-card project-card--weather">
               <figure>
                 <img class="project-thumbnail" src="images/weather-app-thumbnail.jpg" alt="Weather app thumbnail" />
                 <figcaption>Weather App</figcaption>
@@ -482,7 +597,7 @@
               <p>React, OpenWeatherMap API</p>
             </article>
 
-            <article class="project-card">
+            <article class="project-card project-card--task-manager">
               <figure>
                 <img class="project-thumbnail" src="images/task-manager-thumbnail.jpg" alt="Task manager thumbnail" />
                 <figcaption>Task Manager</figcaption>
@@ -589,10 +704,6 @@
       </section>
     </main>
 
-    <footer>
-      <a href="https://github.com/Xruiz16" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/username/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </footer>
     <button id="backToTop" type="button" aria-label="Back to top">
       <span aria-hidden="true">&#8679;</span>
     </button>

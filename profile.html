@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      console.time('Page load');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Xavier Ruiz" />
@@ -42,6 +45,18 @@
         font-size: 2rem;
         margin-bottom: 20px;
         margin-top: 0;
+      }
+
+      .project-count-badge {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 2px 10px;
+        border-radius: 999px;
+        background-color: var(--primary);
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 0.9rem;
+        vertical-align: middle;
       }
 
       .tagline {
@@ -198,6 +213,7 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <button type="button" onclick="toggleTheme()">Toggle Theme</button>
     </header>
 
     <main>
@@ -228,6 +244,7 @@
                I enjoy all things pop culture related.
               </em>
             </p>
+            <p>Experience: <span id="expYears">0 years and 0 months</span></p>
             <p>
               I do well in school and maintain A's.
             </p>
@@ -252,7 +269,7 @@
           <h2 id="skills-title">Skills</h2>
 
           <h3>Technical Skills</h3>
-          <ul class="skills-list">
+          <ul id="skillsList" class="skills-list">
             <li>
               HTML/CSS
               <ul>
@@ -261,11 +278,7 @@
                 <li>Grid</li>
               </ul>
             </li>
-            <li>JavaScript</li>
             <li>Python</li>
-            <li>React</li>
-            <li>Node.js</li>
-            <li>Git</li>
           </ul>
 
           <h3>Career Timeline</h3>
@@ -294,10 +307,17 @@
 
       <section id="projects" aria-labelledby="projects-title">
         <div class="container">
-          <h2 id="projects-title">Projects</h2>
+          <h2 id="projects-title">Projects <span id="projectCount" class="project-count-badge" aria-label="Project count">0</span></h2>
+
+          <label for="project-category">Filter projects:</label>
+          <select id="project-category" onchange="filterProjects(this.value)">
+            <option value="all">All</option>
+            <option value="web">Web</option>
+            <option value="app">App</option>
+          </select>
 
           <div class="projects-grid">
-            <article class="project-card">
+            <article class="project-card" data-category="web">
               <figure>
                 <img class="project-thumbnail" src="images/portfolio-thumbnail.jpg" alt="Portfolio website thumbnail" />
                 <figcaption>Personal Portfolio</figcaption>
@@ -307,7 +327,7 @@
               <p>HTML, CSS, JavaScript</p>
             </article>
 
-            <article class="project-card">
+            <article class="project-card" data-category="app">
               <figure>
                 <img class="project-thumbnail" src="images/weather-app-thumbnail.jpg" alt="Weather app thumbnail" />
                 <figcaption>Weather App</figcaption>
@@ -317,7 +337,7 @@
               <p>React, OpenWeatherMap API</p>
             </article>
 
-            <article class="project-card">
+            <article class="project-card" data-category="app">
               <figure>
                 <img class="project-thumbnail" src="images/task-manager-thumbnail.jpg" alt="Task manager thumbnail" />
                 <figcaption>Task Manager</figcaption>
@@ -338,7 +358,7 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="projectTableBody">
               <tr>
                 <td>Personal Portfolio</td>
                 <td>A website showcasing my projects and skills.</td>
@@ -374,7 +394,7 @@
         <div class="container">
           <h2 id="contact-title">Contact Me</h2>
 
-          <form action="#" method="post">
+          <form action="#" method="post" onsubmit="return validateForm()" novalidate>
             <label>
               <span>Your Name</span>
               <input type="text" name="name" placeholder="Your Name" required />
@@ -409,24 +429,158 @@
             </fieldset>
 
             <div class="form-actions">
+              <button id="hello-button" type="button">Click Me</button>
               <button type="submit">Send Message 🚀</button>
               <button type="reset">Clear Form</button>
-              <button type="button" onclick="window.print()">Print</button>
+              <button id="print-button" type="button">Print</button>
+              <button id="clear-console-button" type="button">Clear Console</button>
             </div>
           </form>
 
           <div class="contact-links">
             <a href="mailto:42602@ocvts.org">Email Me</a>
             <a href="tel:+1234567890">Call Me</a>
-            <a href="#" onclick="window.print(); return false;">Print Page</a>
+            <a id="print-page-link" href="#">Print Page</a>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
+      <p>&copy; <span id="current-date">2023</span> Xavier Ruiz</p>
       <a href="https://github.com/Xruiz16" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="https://www.linkedin.com/in/username/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </footer>
+    <script>
+      let isDark = localStorage.getItem('theme') === 'dark';
+
+      const extraSkills = ['JavaScript', 'React', 'Node.js', 'Git'];
+      const skillsList = document.querySelector('#skillsList');
+
+      extraSkills.forEach((skill) => {
+        const skillItem = document.createElement('li');
+        skillItem.textContent = skill;
+        skillsList.appendChild(skillItem);
+      });
+
+      function filterProjects(category) {
+        const projectCards = document.querySelectorAll('.project-card');
+        const categoryFilters = {
+          all: () => true,
+          web: (card) => card.dataset.category === 'web',
+          app: (card) => card.dataset.category === 'app'
+        };
+        const matchesCategory = Object.prototype.hasOwnProperty.call(categoryFilters, category)
+          ? categoryFilters[category]
+          : categoryFilters.all;
+
+        projectCards.forEach((card) => {
+          card.style.display = matchesCategory(card) ? '' : 'none';
+        });
+      }
+
+      function applyTheme() {
+        if (!isDark) {
+          document.body.style.background = '#f8fafc';
+          document.body.style.color = '#1e293b';
+        } else {
+          document.body.style.background = '#1e293b';
+          document.body.style.color = '#f8fafc';
+        }
+      }
+
+      function toggleTheme() {
+        isDark = !isDark;
+        applyTheme();
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      }
+
+      applyTheme();
+
+      function validateForm() {
+        const name = document.querySelector('input[name="name"]').value.trim();
+        const email = document.querySelector('input[name="email"]').value.trim();
+        const message = document.querySelector('textarea[name="message"]').value.trim();
+
+        if (!name || !email) {
+          alert('Please fill in all fields');
+          return false;
+        }
+
+        if (message.length < 10) {
+          alert('Please enter a message of at least 10 characters');
+          return false;
+        }
+
+        alert('Message sent!');
+        return false;
+      }
+
+      function sayHello() {
+        alert("Thanks for visiting!");
+      }
+
+      document.getElementById('hello-button').addEventListener('click', sayHello);
+      document.getElementById('print-button').addEventListener('click', () => window.print());
+      document.getElementById('clear-console-button').addEventListener('click', () => console.clear());
+      document.getElementById('print-page-link').addEventListener('click', (event) => {
+        event.preventDefault();
+        window.print();
+      });
+
+      function getCurrentDate() {
+        return new Date().toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      }
+
+      document.getElementById('current-date').textContent = getCurrentDate();
+
+      function calculateExperience(startYear, startMonth) {
+        const now = new Date();
+        const totalMonths = (now.getFullYear() - startYear) * 12
+          + now.getMonth() + 1 - startMonth;
+
+        return {
+          years: Math.floor(totalMonths / 12),
+          months: totalMonths % 12
+        };
+      }
+
+      const experience = calculateExperience(2024, 6);
+      document.getElementById('expYears').textContent =
+        `${experience.years} years and ${experience.months} months`;
+
+      const projectTableBody = document.getElementById('projectTableBody');
+      const projectCount = document.getElementById('projectCount');
+
+      function updateProjectCount() {
+        const rowCount = document.querySelectorAll('table tbody tr').length;
+        console.log('Project rows:', rowCount);
+        projectCount.textContent = rowCount;
+      }
+
+      updateProjectCount();
+      new MutationObserver(updateProjectCount).observe(projectTableBody, {
+        childList: true
+      });
+
+      console.log("Welcome to Xavier Ruiz's Portfolio!");
+      console.warn('Fun fact: this portfolio is powered by creativity!');
+      console.table([
+        { category: 'Technical', skill: 'HTML/CSS' },
+        { category: 'Technical', skill: 'Responsive Design' },
+        { category: 'Technical', skill: 'Flexbox' },
+        { category: 'Technical', skill: 'Grid' },
+        { category: 'Technical', skill: 'JavaScript' },
+        { category: 'Technical', skill: 'Python' },
+        { category: 'Technical', skill: 'React' },
+        { category: 'Technical', skill: 'Node.js' },
+        { category: 'Technical', skill: 'Git' }
+      ]);
+      console.timeEnd('Page load');
+    </script>
   </body>
 </html>

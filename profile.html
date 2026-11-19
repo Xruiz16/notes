@@ -681,6 +681,7 @@
     <footer>
       <a href="https://github.com/Xruiz16" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="https://www.linkedin.com/in/username/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <p id="lastUpdated"></p>
     </footer>
     <script>
       const skills = {
@@ -724,6 +725,22 @@
 
       projects.sort((first, second) => first.year - second.year);
 
+      let lastFeaturedProjectIndex = -1;
+
+      function showRandomProject() {
+        let index = Math.floor(Math.random() * projects.length);
+        if (projects.length > 1 && index === lastFeaturedProjectIndex) {
+          index = Math.floor(Math.random() * (projects.length - 1));
+          if (index >= lastFeaturedProjectIndex) {
+            index++;
+          }
+        }
+        lastFeaturedProjectIndex = index;
+        console.log("Today's featured project: " + projects[index].title);
+      }
+
+      window.addEventListener('load', showRandomProject);
+
       const projectsContainer = document.querySelector('#projectsContainer');
       const projectCardsHTML = projects.map((project) => `
         <div class="project-card">
@@ -740,6 +757,43 @@
 
       console.log(projects);
       console.log(projects[1].title);
+
+      const rawInput = " Example User 123 ";
+      console.log("Raw input:", rawInput);
+
+      const trimmedInput = rawInput.trim();
+      console.log("Trimmed:", trimmedInput);
+
+      const isValidInput = /^[A-Za-z ]+$/.test(trimmedInput);
+      console.log("Input contains only letters and spaces:", isValidInput);
+
+      const lowercaseInput = trimmedInput.toLowerCase();
+      console.log("Lowercase:", lowercaseInput);
+
+      const cleanedInput = lowercaseInput.replace(/\d/g, "");
+      console.log("Numbers removed:", cleanedInput);
+
+      const now = new Date();
+      const lastUpdatedDate = new Date(document.lastModified);
+      const elapsedSeconds = Math.floor((now - lastUpdatedDate) / 1000);
+      const relativeTimeFormatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+      let relativeTime;
+
+      if (elapsedSeconds < 60) {
+        relativeTime = relativeTimeFormatter.format(-elapsedSeconds, 'second');
+      } else if (elapsedSeconds < 3600) {
+        relativeTime = relativeTimeFormatter.format(-Math.floor(elapsedSeconds / 60), 'minute');
+      } else if (elapsedSeconds < 86400) {
+        relativeTime = relativeTimeFormatter.format(-Math.floor(elapsedSeconds / 3600), 'hour');
+      } else if (elapsedSeconds < 2592000) {
+        relativeTime = relativeTimeFormatter.format(-Math.floor(elapsedSeconds / 86400), 'day');
+      } else if (elapsedSeconds < 31536000) {
+        relativeTime = relativeTimeFormatter.format(-Math.floor(elapsedSeconds / 2592000), 'month');
+      } else {
+        relativeTime = relativeTimeFormatter.format(-Math.floor(elapsedSeconds / 31536000), 'year');
+      }
+
+      document.querySelector('#lastUpdated').textContent = `Updated ${relativeTime}`;
     </script>
   </body>
 </html>

@@ -15,6 +15,31 @@
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="style.css" />
     <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      #scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1001;
+        width: 100%;
+        height: 4px;
+        background: var(--border);
+        pointer-events: none;
+      }
+
+      #scroll-progress-bar {
+        width: 0;
+        height: 100%;
+        background: var(--accent);
+      }
+
+      .print-summary {
+        display: none;
+      }
+
       :root {
         --primary: #2563eb;
         --dark: #1e293b;
@@ -434,6 +459,12 @@
         position: relative;
       }
 
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
       @media (prefers-color-scheme: dark) {
         :root {
           color-scheme: dark;
@@ -459,10 +490,45 @@
           background: linear-gradient(135deg, #1d4ed8 0%, #172554 100%);
         }
       }
+
+      @media print {
+        * {
+          color: #000 !important;
+          background: #fff !important;
+          background-image: none !important;
+          box-shadow: none !important;
+          text-shadow: none !important;
+          -webkit-text-fill-color: #000 !important;
+        }
+
+        body {
+          padding-top: 0;
+        }
+
+        .print-summary {
+          display: block;
+          margin: 0 0 1rem;
+          padding: 0 0 1rem;
+          border-bottom: 1px solid #000;
+          break-inside: avoid;
+        }
+
+        .site-header,
+        nav,
+        button,
+        .form-actions,
+        #print-page-link,
+        #scroll-progress {
+          display: none !important;
+        }
+      }
     </style>
   </head>
 
   <body>
+    <div id="scroll-progress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div id="scroll-progress-bar"></div>
+    </div>
     <header class="site-header">
       <nav aria-label="Main navigation">
         <ul>
@@ -478,12 +544,32 @@
       <button type="button" onclick="toggleTheme()">Toggle Theme</button>
     </header>
 
+    <section class="print-summary" aria-labelledby="print-summary-title">
+      <div class="container">
+        <h2 id="print-summary-title">Portfolio Summary</h2>
+        <p>
+          Xavier Ruiz is a high-school student interested in coding and problem-solving,
+          with a focus on web development.
+        </p>
+        <p>
+          <strong>Skills:</strong> HTML, CSS, Python, responsive design, Flexbox, and Grid.
+        </p>
+        <p><strong>Selected projects:</strong></p>
+        <ul>
+          <li>Personal portfolio built with HTML, CSS, and JavaScript.</li>
+          <li>Weather app using React and the OpenWeatherMap API.</li>
+          <li>Task manager using Node.js, Express, and MongoDB.</li>
+        </ul>
+      </div>
+    </section>
+
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="container">
           <h1 id="hero-title">Hello World</h1>
           <h2 class="tagline">Full Stack Developer</h2>
           <p>Hello there! I am Xavier.</p>
+          <p><strong>Tip of the Visit:</strong> <span id="visit-tip" aria-live="polite"></span></p>
         </div>
       </section>
 
@@ -664,7 +750,7 @@
               <button id="hello-button" type="button">Click Me</button>
               <button type="submit">Send Message 🚀</button>
               <button type="reset">Clear Form</button>
-              <button id="print-button" type="button">Print</button>
+              <button id="print-button" type="button" onclick="printPortfolio()">Print / Save as PDF</button>
               <button id="clear-console-button" type="button">Clear Console</button>
             </div>
           </form>
@@ -672,7 +758,7 @@
           <div class="contact-links">
             <a href="mailto:42602@ocvts.org">Email Me</a>
             <a href="tel:+1234567890">Call Me</a>
-            <a id="print-page-link" href="#">Print Page</a>
+            <a id="print-page-link" href="#" onclick="printPortfolio(); return false;">Print Page</a>
           </div>
         </div>
       </section>
@@ -794,6 +880,47 @@
       }
 
       document.querySelector('#lastUpdated').textContent = `Updated ${relativeTime}`;
+
+      function printPortfolio() {
+        window.print();
+      }
+
+      function welcomeMessage() {
+        alert("Thanks for exploring my portfolio!");
+      }
+
+      setTimeout(welcomeMessage, 5000);
+
+      const visitTips = [
+        'Explore the Projects section to see what I have been building.',
+        'Use the navigation links to jump to About, Projects, or Contact.',
+        'Try the theme toggle at the top of the page.'
+      ];
+      const visitTip = document.querySelector('#visit-tip');
+      let visitTipIndex = 0;
+      visitTip.textContent = visitTips[visitTipIndex];
+
+      setInterval(() => {
+        visitTipIndex = (visitTipIndex + 1) % visitTips.length;
+        visitTip.textContent = visitTips[visitTipIndex];
+      }, 10000);
+
+      const scrollProgress = document.querySelector('#scroll-progress');
+      const scrollProgressBar = document.querySelector('#scroll-progress-bar');
+
+      function updateScrollProgress() {
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollableHeight > 0
+          ? Math.min(Math.max((window.scrollY / scrollableHeight) * 100, 0), 100)
+          : 0;
+        const roundedProgress = Math.round(progress);
+        scrollProgressBar.style.width = `${progress}%`;
+        scrollProgress.setAttribute('aria-valuenow', roundedProgress);
+      }
+
+      window.addEventListener('scroll', updateScrollProgress, { passive: true });
+      window.addEventListener('resize', updateScrollProgress);
+      updateScrollProgress();
     </script>
   </body>
 </html>
